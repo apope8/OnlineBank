@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.onlineBanking.service;
+package com.mycompany.customer.service;
 
-import com.mycompany.onlineBanking.model.Account;
-import com.mycompany.onlineBanking.model.Customer;
+import com.mycompany.customer.model.Account;
+import com.mycompany.customer.model.Customer;
 import java.util.ArrayList;
 import java.util.List;
 

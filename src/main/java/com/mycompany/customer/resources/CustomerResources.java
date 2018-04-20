@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.onlineBanking.resources;
+package com.mycompany.customer.resources;
 
-import com.mycompany.onlineBanking.model.Customer;
+import com.mycompany.customer.model.Customer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import com.mycompany.onlineBanking.service.CustomerService;
+import com.mycompany.customer.service.CustomerService;
 import com.sun.javafx.scene.web.Debugger;
 import java.util.List;
 import javax.ws.rs.Consumes;
