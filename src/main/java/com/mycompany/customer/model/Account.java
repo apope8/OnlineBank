@@ -16,24 +16,31 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Account {
+    
+    
 
     // Overloaded constructor to hold Account variables
-    public Account(int sortCode, int accountNumber, int currentBalance, int listOfTransaction) {
+    public Account(int sortCode, int accountNumber, int currentBalance, int listOfTransaction, String accountName) {
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
         this.listOfTransactions = listOfTransaction;
+        this.accountName = accountName;
     }
 
     // Default constructor
     public Account() {
     }
+    
+    
 
     // Private variables
     private int sortCode;
     private int accountNumber;
     private int currentBalance;
     private int listOfTransactions;
+    private String accountName;
+
 
     public int getSortCode() {
         return sortCode;
