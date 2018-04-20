@@ -20,11 +20,11 @@ public class Account {
     
 
     // Overloaded constructor to hold Account variables
-    public Account(int sortCode, int accountNumber, int currentBalance, int listOfTransaction, String accountName) {
+    public Account(int sortCode, int accountNumber, int currentBalance, String accountName) {
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
-        this.listOfTransactions = listOfTransaction;
+        //this.listOfTransactions = listOfTransaction;
         this.accountName = accountName;
     }
 
@@ -38,7 +38,7 @@ public class Account {
     private int sortCode;
     private int accountNumber;
     private int currentBalance;
-    private int listOfTransactions;
+    //private int listOfTransactions;
     private String accountName;
 
 
@@ -66,12 +66,12 @@ public class Account {
         this.currentBalance = currentBalance;
     }
 
-    public int getListOfTransactions() {
+    /*public int getListOfTransactions() {
         return listOfTransactions;
     }
 
     public void setListOfTransactions(int listOfTransactions) {
         this.listOfTransactions = listOfTransactions;
-    }
+    }*/
 
 }

@@ -44,11 +44,11 @@ public class AccountService {
             Account a4 = new Account(1, "708090", "1234570", "savings");
             Account a5 = new Account(1, "708090", "1234571", "current");*/
            
-           Account a1 = new Account(1, 708090, 1234567, 7, "current");
-           Account a2 = new Account(1, 708090, 1234568, 7, "savings");
-           Account a3 = new Account(1, 708090, 1234569, 7, "savings");
-           Account a4 = new Account(1, 708090, 1234570, 7, "savings");
-           Account a5 = new Account(1, 708090, 1234571, 7, "current");
+           Account a1 = new Account(1, 708090, 1234567, "current");
+           Account a2 = new Account(1, 708090, 1234568, "savings");
+           Account a3 = new Account(1, 708090, 1234569, "savings");
+           Account a4 = new Account(1, 708090, 1234570, "savings");
+           Account a5 = new Account(1, 708090, 1234571, "current");
          
            
 
