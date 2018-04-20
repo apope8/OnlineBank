@@ -38,11 +38,18 @@ public class AccountService {
     public AccountService(int id) {
         if (init) {
 
-            Account a1 = new Account(1, "708090", "1234567", "current");
+           /* Account a1 = new Account(1, "708090", "1234567", "current");
             Account a2 = new Account(1, "708090", "1234568", "savings");
             Account a3 = new Account(1, "708090", "1234569", "savings");
             Account a4 = new Account(1, "708090", "1234570", "savings");
-            Account a5 = new Account(1, "708090", "1234571", "current");
+            Account a5 = new Account(1, "708090", "1234571", "current");*/
+           
+           Account a1 = new Account(1, 708090, "1234567", "7", "current");
+           Account a2 = new Account(1, 708090, "1234568", "7", "savings");
+           Account a3 = new Account(1, 708090, "1234569", "7", "savings");
+           Account a4 = new Account(1, 708090, "1234570", "7", "savings");
+           Account a5 = new Account(1, 708090, "1234571", "7", "current");
+           
 
             listC1.add(a1);     //add 1 account customer 1 account list
             listC2.add(a2);     //add 1 account customer 2 account list  
@@ -99,7 +106,7 @@ public class AccountService {
     public Account addAccount(Account acc) {
         List<Account> cal = csAList.get(customerId - 1);
         System.out.println("taxPID " + customerId);
-        acc.setId(cal.size() + 1);
+        acc.setAccountNumber(cal.size() + 1);
         cal.add(acc);
 
         System.out.println("201 -  address create with id:" + String.valueOf(acc.getId()));
