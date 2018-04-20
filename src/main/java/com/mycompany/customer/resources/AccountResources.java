@@ -82,7 +82,7 @@ public class AccountResources {
     @PUT
     @Path("/{accountId}")
     public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") int transaction, 
-            @QueryParam("ammount") double amount) {
+            @QueryParam("amount") double amount) {
         
         System.out.println("in method AccountService processAccTrans");
         return AccountService.processAccTrans(accId, transaction, amount);

@@ -90,7 +90,7 @@ public class AccountService {
     public Account getAccount(int accId) {
         if (csAList.size() >= customerId) {
 
-            List<Account> cal = csAList.get(customerId - 1);
+            List<Account> cal = csAList.get(customerId - 1);           
             System.out.println("custID " + customerId + ". addID " + (accId));
             System.out.println("cal size " + cal.size());
             if (cal.size() >= accId) {
@@ -107,7 +107,7 @@ public class AccountService {
     public Account addAccount(Account acc) {
         List<Account> cal = csAList.get(customerId - 1);
         System.out.println("taxPID " + customerId);
-        acc.setAccountNumber(cal.size() + 1);
+        acc.setId(cal.size() + 1);
         cal.add(acc);
 
         System.out.println("201 -  address create with id:" + String.valueOf(acc.getId()));
@@ -124,6 +124,7 @@ public class AccountService {
             if (cal.size() >= accId) {
                 Account acc = cal.get(accId - 1);
                 if ((trx == 1 || trx == 2)) {
+                
                     result = acc.credit(amount);
                 } 
                 else if (trx == 3) {

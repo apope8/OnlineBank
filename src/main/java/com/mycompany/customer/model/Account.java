@@ -14,16 +14,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 17132410, Jemma McCreesh - 16144457
  * @date 18th April 18
  */
-@XmlRootElement
+
 public class Account {
     
-    
-
     // Overloaded constructor to hold Account variables
-    public Account(int sortCode, int accountNumber, int currentBalance, String accountName) {
+    public Account(int id, int sortCode, int accountNumber, String accountName) {
+        this.id = id;
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
-        this.currentBalance = currentBalance;
+        this.currentBalance = 0.0;
         //this.listOfTransactions = listOfTransaction;
         this.accountName = accountName;
     }
@@ -32,15 +31,21 @@ public class Account {
     public Account() {
     }
     
-    
-
     // Private variables
+    private int id;
     private int sortCode;
     private int accountNumber;
-    private int currentBalance;
+    private double currentBalance;
     //private int listOfTransactions;
     private String accountName;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getSortCode() {
         return sortCode;
@@ -58,14 +63,23 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public int getCurrentBalance() {
+    public double getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(int currentBalance) {
+    public void setCurrentBalance(double currentBalance) {
         this.currentBalance = currentBalance;
     }
 
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    
     /*public int getListOfTransactions() {
         return listOfTransactions;
     }
@@ -73,5 +87,20 @@ public class Account {
     public void setListOfTransactions(int listOfTransactions) {
         this.listOfTransactions = listOfTransactions;
     }*/
+    
+    public boolean credit(double amount) {
+        currentBalance = currentBalance + amount;
+        return true;
+    }
+   
+    public boolean debit(double amount) {
+        if (currentBalance >= amount){
+           currentBalance = currentBalance - amount; 
+           return true;
+        }
+        else{
+           return false; 
+        }
+    }
 
 }

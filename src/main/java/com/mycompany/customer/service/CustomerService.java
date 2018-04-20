@@ -24,12 +24,12 @@ public class CustomerService {
     public CustomerService() {
         if (init) {
             // (id, name, address, email, mothers maiden name(security credential))
-            Customer c1 = new Customer(1,"Noel Smith", "55 Main St", "noel.smith@eir.com", "Brown");
+            Customer c1 = new Customer(1,"Noel Smith", "55 Main St", "noel.smith@eir.com");
       
-            Customer c2 = new Customer(2,"Gabriel White", "55 Main St", "noel.smith@eir.com", "Brown");
-            Customer c3 = new Customer(3,"Eve", "55 Main St", "noel.smith@eir.com", "Brown");
-            Customer c4 = new Customer(4,"Harry", "55 Main St", "noel.smith@eir.com", "Brown");
-            Customer c5 = new Customer(5,"Noel", "55 Main St", "noel.smith@eir.com", "Brown");
+            Customer c2 = new Customer(2,"Gabriel White", "55 Main St", "noel.smith@eir.com");
+            Customer c3 = new Customer(3,"Eve", "55 Main St", "noel.smith@eir.com");
+            Customer c4 = new Customer(4,"Harry", "55 Main St", "noel.smith@eir.com" );
+            Customer c5 = new Customer(5,"Noel", "55 Main St", "noel.smith@eir.com");
 
             list.add(c1);
             list.add(c2);
