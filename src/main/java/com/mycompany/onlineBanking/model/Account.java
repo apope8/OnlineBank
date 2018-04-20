@@ -18,11 +18,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Account {
 
     // Overloaded constructor to hold Account variables
-    public Account(int sortCode, int accountNumber, int currentBalance, int listOfTransaction) {
+    public Account(int sortCode, int accountNumber, String currentBalance, String listOfTransaction, String accountName) {
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
         this.currentBalance = currentBalance;
         this.listOfTransactions = listOfTransaction;
+        this.accountName = accountName;
     }
 
     // Default constructor
@@ -32,8 +33,9 @@ public class Account {
     // Private variables
     private int sortCode;
     private int accountNumber;
-    private int currentBalance;
-    private int listOfTransactions;
+    private String currentBalance;
+    private String listOfTransactions;
+    private String accountName;
 
     public int getSortCode() {
         return sortCode;
@@ -51,20 +53,30 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public int getCurrentBalance() {
+    public String getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(int currentBalance) {
+    public void setCurrentBalance(String currentBalance) {
         this.currentBalance = currentBalance;
     }
 
-    public int getListOfTransactions() {
+    public String getListOfTransactions() {
         return listOfTransactions;
     }
 
-    public void setListOfTransactions(int listOfTransactions) {
+    public void setListOfTransactions(String listOfTransactions) {
         this.listOfTransactions = listOfTransactions;
     }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    
+    
 
 }
