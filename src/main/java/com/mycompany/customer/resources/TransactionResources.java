@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.onlineBanking.resources;
+package com.mycompany.customer.resources;
 
-import com.mycompany.onlineBanking.model.Customer;
-import com.mycompany.onlineBanking.service.CustomerService;
-import com.mycompany.onlineBanking.service.TransactionService;
+import com.mycompany.customer.model.Customer;
+import com.mycompany.customer.service.CustomerService;
+import com.mycompany.customer.service.TransactionService;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.onlineBanking.resources;
+package com.mycompany.customer.resources;
 
-import com.mycompany.onlineBanking.model.Account;
-import com.mycompany.onlineBanking.service.AccountService;
+import com.mycompany.customer.model.Account;
+import com.mycompany.customer.service.AccountService;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -38,19 +38,13 @@ public class AccountResources {
      */
 
     public AccountResources(int id) {
-        System.out.println("accountRes constuctor");
         customerID = id;
         AccountService = new AccountService(customerID);
-        System.out.println("testb");
     }    
 
     @GET
     public List<Account> getCustAccounts() {
-        System.out.println("in method of AccountRes getCustAccountss");
-        System.out.println("accService : " + AccountService);
-        List<Account> la = AccountService.getACustAccounts();
-        System.out.println("testa");
-        return la;
+        return AccountService.getACustAccounts();
     }    
 
 
