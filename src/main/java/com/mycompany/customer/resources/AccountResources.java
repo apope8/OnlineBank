@@ -14,6 +14,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
 /**
@@ -28,8 +29,7 @@ public class AccountResources {
     
     private int customerID;
     AccountService AccountService;
-    
-    
+  
     /**
      * Constructor for sub-resource of accounts that receives customerId
      *  
@@ -45,11 +45,15 @@ public class AccountResources {
 
     @GET
     public List<Account> getCustAccounts() {
-        return AccountService.getACustAccounts();
+        List<Account> accList = AccountService.getACustAccounts();
+        if (accList == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return accList;
+        }        
     }    
-
-
-//    
+  
 //    /**
 //     * Search for an account by id 
 //     * curl -v -X GET http://localhost:49000/api/customers/1/accounts/2
@@ -58,7 +62,13 @@ public class AccountResources {
     @GET
     @Path("/{accountId}")
     public Account getAccount(@PathParam("accountId") int id) {
-        return AccountService.getAccount(id);
+        Account acc = AccountService.getAccount(id);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return acc;
+        }
     }    
 
     //    /**
@@ -69,7 +79,13 @@ public class AccountResources {
     @POST
     public Account addAccount(Account acc) {
         System.out.println("in method AccountService addAccount");
-        return AccountService.addAccount(acc);
+        acc = AccountService.addAccount(acc);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return acc;
+        }
     }  
     
 //    /**
@@ -86,7 +102,13 @@ public class AccountResources {
             @QueryParam("amount") double amount) {
         
         System.out.println("in method AccountService processAccTrans");
-        return AccountService.processAccTrans(accId, transaction, amount);
+        Account acc = AccountService.processAccTrans(accId, transaction, amount);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return acc;
+        }
     }  
 
 //    /**
@@ -102,7 +124,12 @@ public class AccountResources {
     public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") int transaction) {
         
         System.out.println("in method AccountService processAccTrans");
-        return AccountService.processAccTrans(accId, transaction);
-        // return Response.status(200).entity(output).build();
+        Account acc = AccountService.processAccTrans(accId, transaction);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return acc;
+        }
     }  
 }
