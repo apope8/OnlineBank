@@ -87,14 +87,7 @@ public class CustomerResources {
         cust.setId(id);
         return customerService.updateUser(cust);
     }
-     
-    // ??provide or take out
-    @DELETE
-    @Path("/{userId}")
-    public void deleteCustomer(@PathParam("userId") int id) { 
-       customerService.deleteUser(id);
-    }
-    
+   
     /*
     *  account subresources handling
     */
@@ -108,6 +101,5 @@ public class CustomerResources {
         //
     
         return new AccountResources(id);
-    }
-    
+    }  
 }
