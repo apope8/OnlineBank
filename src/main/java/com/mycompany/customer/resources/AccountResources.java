@@ -14,6 +14,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
 
 /**
  * Java class that represents Accounts Resources
@@ -56,7 +57,7 @@ public class AccountResources {
 //     */
     @GET
     @Path("/{accountId}")
-    public Account getAddress(@PathParam("accountId") int id) {
+    public Account getAccount(@PathParam("accountId") int id) {
         return AccountService.getAccount(id);
     }    
 
@@ -96,11 +97,12 @@ public class AccountResources {
 //     * @param transaction -   transaction of balance
 //    
 //     */
-//    @POST
-//    @Path("/{accountId}")
-//    public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") String transaction) {
-//        
-//        System.out.println("in method AccountService processAccTrans");
-//        return AccountService.processAccTrans(accId, transaction);
-//    }  
+    @POST
+    @Path("/{accountId}")
+    public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") int transaction) {
+        
+        System.out.println("in method AccountService processAccTrans");
+        return AccountService.processAccTrans(accId, transaction);
+        // return Response.status(200).entity(output).build();
+    }  
 }

@@ -56,20 +56,6 @@ public class CustomerService {
         return matcheslist;
     }
 
-    public Customer createUser(Customer user) {
-
-        for (Customer u : getAllUsers()) {
-            if (user.getName().equals(u.getName())) {
-                System.out.println("User name already exists: " + user.getName());
-                return user;
-            }
-        }
-        user.setId(list.size() + 1);
-        list.add(user);
-        System.out.println("201 -  user create with id:" + String.valueOf(user.getId()));
-        return user;
-    }
-
     public Customer readUser(int id) {
         return list.get(id - 1);
     }
@@ -83,13 +69,5 @@ public class CustomerService {
         return user;
     }
 
-    public Customer deleteUser(int id) {
-        if (id <= 0) {
-            return null;
-        }
-        Customer u = list.get(id - 1);
-        list.remove(id - 1);
-        System.out.println("204 -  user id:" + String.valueOf(id) + " deleted");
-        return u;
-    }
+
 }

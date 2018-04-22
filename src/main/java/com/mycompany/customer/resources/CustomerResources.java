@@ -63,17 +63,6 @@ public class CustomerResources {
         return customerService.readUser(id);
     }
 
-//    /**
-//     * 
-//     * Creates a user 
-//     * curl -v -X POST http://localhost:49000/api/customers/ -d '{"name":"Don", "occupation":"teacher", "age":"33"}'
-//     * @param body - JSON object of the user
-//     */    
-//    @POST
-//    public TaxPayer postUser(TaxPayer u) {       
-//        return customerService.createUser(u);
-//    }
-    
     
     // ??provide or take out
     ///**
@@ -88,13 +77,6 @@ public class CustomerResources {
         return customerService.updateUser(cust);
     }
      
-    // ??provide or take out
-    @DELETE
-    @Path("/{userId}")
-    public void deleteCustomer(@PathParam("userId") int id) { 
-       customerService.deleteUser(id);
-    }
-    
     /*
     *  account subresources handling
     */
