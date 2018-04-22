@@ -8,8 +8,6 @@ package com.mycompany.customer.service;
 import com.mycompany.customer.model.Account;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
 
 /**
  * Java class that represents Account Service data
@@ -19,7 +17,8 @@ import javax.ws.rs.core.Response;
  * @date 18th April 18
  */
 public class AccountService {
-    
+    //public static List<Address> list = new ArrayList<>();
+
     // customers array list of arraylist of accounts
     //For our purposes Customer x have account ids of 1,2,3,.., 
     // that is Customer 1 hac acc ids 1,2,3,.., and Customer 2 have acc ids 1,2,3..? 
@@ -133,9 +132,7 @@ public class AccountService {
                         result = acc.debit(amount);
                     } 
                     else {
-                        throw new WebApplicationException(Response.Status.NOT_MODIFIED);
-
-                        //result = false;
+                        result = false;
                     }
                 }
                 if (result == false) {
@@ -147,7 +144,6 @@ public class AccountService {
             
             }
             else {
-                System.out.println("testerror");
                return null;
             }
         } 
@@ -155,39 +151,6 @@ public class AccountService {
             return null;
         }
     }
-    /*
-     *   Method to retreieve balance of a particular account given by account for
-     *   a particular customer given by customerID.
-    */
-    
-    public  Account processAccTrans(int accId, int trx) {
-        if (csAList.size() >= customerId) {
-
-            // find the required arraylist for the customerID:
-            List<Account> cal = csAList.get(customerId - 1);
-            System.out.println("custID " + customerId + ". addID " + (accId));
-            System.out.println("cal size " + cal.size());
-            if (cal.size() >= accId) {
-                // retrieve account from arraylist for account id accId
-                Account acc = cal.get(accId - 1);
-                // transaction id for balance
-                if (trx == 4) {
-                    return acc;
-                }
-                
-//                    String balance = acc.getCurrentBalance() + "";
-
-                else{ 
-                    return null;
-                }                           
-            }
-            else {
-               return null;
-            }
-        } 
-        else {
-            return null;
-        }
-    }  
+   
 }
 
