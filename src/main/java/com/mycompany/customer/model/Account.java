@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @date 18th April 18
  */
 
+
 public class Account {
     
     // Overloaded constructor to hold Account variables
@@ -102,5 +103,12 @@ public class Account {
            return false; 
         }
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", sortCode=" + sortCode + ", accountNumber=" + accountNumber + ", currentBalance=" + currentBalance + ", accountName=" + accountName + '}';
+    }
+    
+    
 
 }
