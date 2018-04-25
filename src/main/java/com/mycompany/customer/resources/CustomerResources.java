@@ -10,13 +10,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import com.mycompany.customer.service.CustomerService;
 import com.sun.javafx.scene.web.Debugger;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.ResourceConfig;
 
 /**
@@ -33,40 +32,35 @@ public class CustomerResources {
     
     CustomerService customerService = new CustomerService();
     
-    /**
-     * 
-     * Search for a user using name and address.
-     * curl -v -X GET http://localhost:49000/api/customers?name=Harry&address=16 Main St
-     * @param name
-     * @param occupation
-     */
     @GET
-    public List<Customer> getCustomers(@QueryParam("name") String name, @QueryParam("address") String address) {
-        if ((name != null) && (address != null)) {
-                     return customerService.getSearchUsers(name, address);   
-        }
-        // Return all customers if a match on particular name and address is not found
-        //return customerService.getAllCustomers();
-        return null;
-    }    
-
+    public Response getCustomers() {
+    
+         return Response.status(403).build();
+    }
+    
      /**
-     * 
-     * Returns a single customer 
+     * Returns a single customer retrieved by customer ID
      * curl -v -X GET http://localhost:49000/api/customers/1
      * @param id - the id of the user
      */
     @GET
     @Path("/{customerId}")
-    public Customer getCustomer(@PathParam("customerId") int id) {
-        return customerService.readUser(id);
+    public Response getCustomer(@PathParam("customerId") int id) {
+        
+        Customer cust = customerService.readUser(id);
+        if (cust == null){
+            return Response.status(404).build();
+        }
+        else{
+             return Response.status(200).entity(cust).build();
+        }
     }
 
     
     // ??provide or take out
     ///**
 //     * Updates a user 
-//     * curl -v -X PUT http://localhost:49000/api/customers/ -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com", mMmaindenname: "smith" }'
+//     * curl -v -X PUT http://localhost:49000/api/customers/ -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com"}'
 //     * @param body - JSON object of the user
 //     */   
     @PUT

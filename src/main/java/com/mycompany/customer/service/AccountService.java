@@ -39,12 +39,7 @@ public class AccountService {
     public AccountService(int id) {
         if (init) {
 
-           /* Account a1 = new Account(1, "708090", "1234567", "current");
-            Account a2 = new Account(1, "708090", "1234568", "savings");
-            Account a3 = new Account(1, "708090", "1234569", "savings");
-            Account a4 = new Account(1, "708090", "1234570", "savings");
-            Account a5 = new Account(1, "708090", "1234571", "current");*/
-           
+
            Account a1 = new Account(1, 708090, 1234567, "current");
            Account a2 = new Account(1, 708090, 1234568, "savings");
            Account a3 = new Account(1, 708090, 1234569, "savings");
@@ -134,8 +129,7 @@ public class AccountService {
                     } 
                     else {
                         throw new WebApplicationException(Response.Status.NOT_MODIFIED);
-
-                        //result = false;
+                 
                     }
                 }
                 if (result == false) {

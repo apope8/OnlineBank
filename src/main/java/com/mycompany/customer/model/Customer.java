@@ -17,10 +17,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Customer {
+    // Private variables
+    private int id;
+    private String name; 
+    private String address;
+    private String email;
    
    // Overloaded constructor to hold Customer variables
     public Customer(int id, String name, String address, String email) {
+        
         this.id = id;
+        this.name = name;
         this.address = address;
         this.email = email;
     }
@@ -29,11 +36,6 @@ public class Customer {
     public Customer() {
     }
     
-    // Private variables
-    private int id;
-    private String name; 
-    private String address;
-     private String email;
 
     public int getId() {
         return id;

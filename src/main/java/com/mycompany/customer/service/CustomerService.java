@@ -40,28 +40,17 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> getAllUsers() {
-        return list;
-    }
-
-    public List<Customer> getSearchUsers(String name, String address) {
-        List<Customer> matcheslist = new ArrayList<>();
-
-        for (Customer u : getAllUsers()) {
-            if ((name == null || u.getAddress().equals(address))
-                    && (name == null || u.getName().equals(name))) {
-                matcheslist.add(u);
-            }
-        }
-        return matcheslist;
-    }
-
     public Customer readUser(int id) {
-        return list.get(id - 1);
+        if (list.size() >= id) {
+            return list.get(id - 1);
+        }
+        else{
+            return null;
+        }
     }
 
     public Customer updateUser(Customer user) {
-        if (user.getId() <= 0) {
+        if ((user.getId() <= 0) || (list.size() < user.getId())) {
             return null;
         }
         list.set(user.getId() - 1, user);
