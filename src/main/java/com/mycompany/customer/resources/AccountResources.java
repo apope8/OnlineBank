@@ -33,7 +33,7 @@ public class AccountResources {
     /**
      * Constructor for sub-resource of accounts that receives customerId
      *  
-     * curl -v -X GET http://localhost:49000/api/customers/1/accounts
+     * curl -v -X GET http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts
      * @param customerID
      * customerId from url
      */
@@ -56,7 +56,7 @@ public class AccountResources {
   
 //    /**
 //     * Search for an account by id 
-//     * curl -v -X GET http://localhost:49000/api/customers/1/accounts/2
+//     * curl -v -X GET http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts/2
 //     * @param id - id of the account
 //     */
     @GET
@@ -90,7 +90,7 @@ public class AccountResources {
     
 //    /**
 //     * Process new transaction on an account for a customer 
-//     * curl -v -X POST http://localhost:49000/api/customers/1/accounts/1?transaction=lodgement%amount=200.00
+//     * curl -v -X POST http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts/1?transaction=lodgement%amount=200.00
 //     * customerID - id of the customer from URL passed to AccountService constructor
 //     * @param accountId   -  account ID
 //     * @param transaction -   transaction of lodgement, transferal or withdrawal
@@ -113,7 +113,7 @@ public class AccountResources {
 
 //    /**
 //     * Process new transaction to request balance on an account for a customer 
-//     * curl -v -X POST http://localhost:49000/api/customers/1/accounts/1?transaction=balance
+//     * curl -v -X POST http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts/1?transaction=balance
 //     * customerID - id of the customer from URL passed to AccountService
 //     * @param accountId   -  account ID
 //     * @param transaction -   transaction of balance

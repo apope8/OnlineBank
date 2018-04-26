@@ -54,11 +54,11 @@ public class AccountService {
             listC4.add(a4);     //add 1 account customer 4 account list
             listC5.add(a5);     //add 1 account customer 5 account list
 
-            csAList.add(listC1);  
-            csAList.add(listC2); 
-            csAList.add(listC3);  
-            csAList.add(listC4); 
-            csAList.add(listC5);  
+            csAList.add(listC1);   // add customer 1 list to customers
+            csAList.add(listC2);   // add customer 2 list to customers
+            csAList.add(listC3);   // add customer 3 list to customers
+            csAList.add(listC4);   // add customer 4 list to customers
+            csAList.add(listC5);   // add customer 5 list to customers
             init = false;
         }
         customerId = id;
@@ -69,8 +69,6 @@ public class AccountService {
         if (csAList.size() >= customerId) {
 
             List<Account> cal = csAList.get(customerId - 1);
-            System.out.println("taxPID " + customerId);
-            System.out.println("cal size " + cal.size());
             List<Account> retList = new ArrayList();
             for (Account acc : cal) {
                 System.out.println("acc " + acc);
@@ -87,8 +85,7 @@ public class AccountService {
         if (csAList.size() >= customerId) {
 
             List<Account> cal = csAList.get(customerId - 1);           
-            System.out.println("custID " + customerId + ". addID " + (accId));
-            System.out.println("cal size " + cal.size());
+
             if (cal.size() >= accId) {
                 return cal.get(accId - 1);
 
@@ -102,7 +99,6 @@ public class AccountService {
 
     public Account addAccount(Account acc) {
         List<Account> cal = csAList.get(customerId - 1);
-        System.out.println("taxPID " + customerId);
         acc.setId(cal.size() + 1);
         cal.add(acc);
         System.out.println("herehere");
@@ -115,8 +111,6 @@ public class AccountService {
         if (csAList.size() >= customerId) {
 
             List<Account> cal = csAList.get(customerId - 1);
-            System.out.println("custID " + customerId + ". addID " + (accId));
-            System.out.println("cal size " + cal.size());
             if (cal.size() >= accId) {
                 Account acc = cal.get(accId - 1);
                 if ((trx == 1 || trx == 2)) {
@@ -158,8 +152,6 @@ public class AccountService {
 
             // find the required arraylist for the customerID:
             List<Account> cal = csAList.get(customerId - 1);
-            System.out.println("custID " + customerId + ". addID " + (accId));
-            System.out.println("cal size " + cal.size());
             if (cal.size() >= accId) {
                 // retrieve account from arraylist for account id accId
                 Account acc = cal.get(accId - 1);

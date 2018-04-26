@@ -14,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -25,13 +26,14 @@ import org.glassfish.jersey.server.ResourceConfig;
  * 17132410, Jemma McCreesh - 16144457
  * @date 18th April 18
  */
-@Path("/customers")
+@Path("/customers/{apiID}")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerResources {
     
     CustomerService customerService = new CustomerService();
-    
+    private static final String APIID = "35c4f3863a0d5efc60708589be6b12c5";
+       
     @GET
     public Response getCustomers() {
     
@@ -40,14 +42,19 @@ public class CustomerResources {
     
      /**
      * Returns a single customer retrieved by customer ID
-     * curl -v -X GET http://localhost:49000/api/customers/1
+     * curl -v -X GET http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1
      * @param id - the id of the user
      */
     @GET
     @Path("/{customerId}")
-    public Response getCustomer(@PathParam("customerId") int id) {
+    public Response getCustomer(@PathParam("apiID") String clApiID, @PathParam("customerId") int id) {
+        
+        if (!(clApiID.equals(APIID))){
+           return Response.status(401).build(); 
+        }
         
         Customer cust = customerService.readUser(id);
+        
         if (cust == null){
             return Response.status(404).build();
         }
@@ -60,14 +67,26 @@ public class CustomerResources {
     // ??provide or take out
     ///**
 //     * Updates a user 
-//     * curl -v -X PUT http://localhost:49000/api/customers/ -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com"}'
+//     * curl -v -X PUT http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5 -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com"}'
 //     * @param body - JSON object of the user
 //     */   
     @PUT
     @Path("/{customerId}")
-    public Customer putCustomer(@PathParam("customerId") int id, Customer cust) { 
+    public Response putCustomer(@PathParam("apiID") String clApiID, @PathParam("customerId") int id, Customer cust) {
+        
+        if (!(clApiID.equals(APIID))){
+           return Response.status(401).build(); 
+        }
+        
         cust.setId(id);
-        return customerService.updateUser(cust);
+        Customer aCust = customerService.updateUser(cust);
+        
+        if (cust == null){
+            return Response.status(404).build();
+        }
+        else{
+             return Response.status(200).entity(cust).build();
+        }    
     }
      
     /*
@@ -75,13 +94,18 @@ public class CustomerResources {
     */
 
     @Path("/{customerId}/accounts")
-    public AccountResources getAccountResources(@PathParam("customerId") int id) {
+    public AccountResources getAccountResources(@PathParam("apiID") String clApiID, @PathParam("apiId") int apiId, @PathParam("customerId") int id) {
         
-        // code to helpd debug 500 error that did not give a stack trace. will take out
-        ResourceConfig config = new ResourceConfig()
-        .register(Debugger.class);
-        //
+//        // code to help debug 500 error that did not give a stack trace. will take out
+//        ResourceConfig config = new ResourceConfig()
+//        .register(Debugger.class);
+//        //
     
+     System.out.println("cccccc" + clApiID);
+        if (!(clApiID.equals(APIID))){
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+          // return Response.status(401).build(); 
+        }
         return new AccountResources(id);
     }
     
