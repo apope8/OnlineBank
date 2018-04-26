@@ -8,9 +8,9 @@ package com.mycompany.customer.resources;
 import com.mycompany.customer.model.Account;
 import com.mycompany.customer.service.AccountService;
 import java.util.List;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
@@ -73,7 +73,7 @@ public class AccountResources {
 
     //    /**
 //     * Add new account for a customer 
-//     * curl -v -X POST http://localhost:49000/api/customers/1/accounts
+//     * curl -v -X POST http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts
 //     * customerID - id of the customer from URL passed to AccountService
 //     */
     @POST
@@ -88,6 +88,22 @@ public class AccountResources {
         }
     }  
     
+    //    /**
+//     * Search for an account by id 
+//     * curl -v -X DELETE http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts/2
+//     * @param id - id of the account
+//     */
+    @DELETE
+    @Path("/{accountId}")
+    public Account deleteAccount(@PathParam("accountId") int id) {
+        Account acc = AccountService.deleteAccount(id);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return acc;
+        }
+    }    
 //    /**
 //     * Process new transaction on an account for a customer 
 //     * curl -v -X POST http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1/accounts/1?transaction=lodgement%amount=200.00

@@ -40,6 +40,10 @@ public class CustomerService {
         }
     }
 
+    public List<Customer> getAllUsers() {
+        return list;
+    }
+    
     public Customer readUser(int id) {
         if (list.size() >= id) {
             return list.get(id - 1);
@@ -47,6 +51,18 @@ public class CustomerService {
         else{
             return null;
         }
+    }
+    
+    public List<Customer> getSearchUsers(String name, String address) {
+        List<Customer> matcheslist = new ArrayList<>();
+
+        for (Customer u : getAllUsers()) {
+            if ((name == null || u.getAddress().equals(address))
+                    && (name == null || u.getName().equals(name))) {
+                matcheslist.add(u);
+            }
+        }
+        return matcheslist;
     }
 
     public Customer updateUser(Customer user) {

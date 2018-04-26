@@ -9,15 +9,16 @@ import com.mycompany.customer.model.Customer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import com.mycompany.customer.service.CustomerService;
-import com.sun.javafx.scene.web.Debugger;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.glassfish.jersey.server.ResourceConfig;
 
 /**
  * Java class that represents Customer Resources
@@ -92,7 +93,7 @@ public class CustomerResources {
     /*
     *  account subresources handling
     */
-
+  
     @Path("/{customerId}/accounts")
     public AccountResources getAccountResources(@PathParam("apiID") String clApiID, @PathParam("apiId") int apiId, @PathParam("customerId") int id) {
         
