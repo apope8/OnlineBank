@@ -14,9 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -34,17 +32,28 @@ public class CustomerResources {
     
     CustomerService customerService = new CustomerService();
     private static final String APIID = "35c4f3863a0d5efc60708589be6b12c5";
-       
-    @GET
-    public Response getCustomers() {
     
-         return Response.status(403).build();
+    private static final String ADMINAPIID = "35c4f3863a0d5efc60708589bef318a7";
+     
+     /**
+     * Returns a list of customers for an APIID only for admin user.
+     * curl -v -X GET http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1
+     * @param apiID
+     */
+    @GET
+    public List<Customer> getCustomers(@PathParam("apiID") String clApiID) {
+        
+        if (!(clApiID.equals(ADMINAPIID))){
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        }
+        return customerService.getAllUsers();
     }
     
      /**
      * Returns a single customer retrieved by customer ID
      * curl -v -X GET http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5/1
      * @param id - the id of the user
+     * @param apiID
      */
     @GET
     @Path("/{customerId}")
@@ -64,13 +73,12 @@ public class CustomerResources {
         }
     }
 
-    
-    // ??provide or take out
-    ///**
-//     * Updates a user 
-//     * curl -v -X PUT http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5 -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com"}'
-//     * @param body - JSON object of the user
-//     */   
+     /**
+       * Updates a user 
+       * curl -v -X PUT http://localhost:49000/api/customers/35c4f3863a0d5efc60708589be6b12c5 -d '{"name":"Don", "address":"1 Main St", "email:"don@mail.com"}'
+       * @param body - JSON object of the user
+       * @param apiID
+      */   
     @PUT
     @Path("/{customerId}")
     public Response putCustomer(@PathParam("apiID") String clApiID, @PathParam("customerId") int id, Customer cust) {
@@ -91,21 +99,14 @@ public class CustomerResources {
     }
      
     /*
-    *  account subresources handling
+    *  accounts subresource handling
     */
   
     @Path("/{customerId}/accounts")
     public AccountResources getAccountResources(@PathParam("apiID") String clApiID, @PathParam("apiId") int apiId, @PathParam("customerId") int id) {
         
-//        // code to help debug 500 error that did not give a stack trace. will take out
-//        ResourceConfig config = new ResourceConfig()
-//        .register(Debugger.class);
-//        //
-    
-     System.out.println("cccccc" + clApiID);
         if (!(clApiID.equals(APIID))){
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
-          // return Response.status(401).build(); 
         }
         return new AccountResources(id);
     }
