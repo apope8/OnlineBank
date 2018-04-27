@@ -112,20 +112,20 @@ public class AccountResources {
 //     * @param transaction -   transaction of lodgement, transferal or withdrawal
 //     * @param amount  -   amount to be applied to balance according to transaction
 //     */
-    @POST
-    @Path("/{accountId}")
-    public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") int transaction, 
-            @QueryParam("amount") double amount) {
-        
-        System.out.println("in method AccountService processAccTrans");
-        Account acc = AccountService.processAccTrans(accId, transaction, amount);
-        if (acc == null){
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        }
-        else{
-            return acc;
-        }
-    }  
+//    @POST
+//    @Path("/{accountId}")
+//    public Account processAccTrans(@PathParam("accountId") int accId, @QueryParam("transaction") int transaction, 
+//            @QueryParam("amount") double amount) {
+//        
+//        System.out.println("in method AccountService processAccTrans");
+//        Account acc = AccountService.processAccTrans(accId, transaction, amount);
+//        if (acc == null){
+//            throw new WebApplicationException(Response.Status.NOT_FOUND);
+//        }
+//        else{
+//            return acc;
+//        }
+//    }  
 
 //    /**
 //     * Process new transaction to request balance on an account for a customer 
@@ -147,5 +147,16 @@ public class AccountResources {
 //        else{
 //            return acc;
 //        }
-//    }  
+//    } 
+    
+    @Path("/{accountId}/transactions")
+    public TransactionResources getTransactionResources(@PathParam("accountId") int accId) {
+        Account acc = AccountService.getAccount(accId);
+        if (acc == null){
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        else{
+            return new TransactionResources(customerID, acc);
+        }
+    }
 }

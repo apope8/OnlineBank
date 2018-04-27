@@ -5,7 +5,8 @@
  */
 package com.mycompany.customer.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Java class that represents Account data
@@ -24,7 +25,8 @@ public class Account {
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
         this.currentBalance = 0.0;
-        //this.listOfTransactions = listOfTransaction;
+        this.transactionsList = new ArrayList<>();
+       
         this.accountName = accountName;
     }
 
@@ -37,7 +39,7 @@ public class Account {
     private int sortCode;
     private int accountNumber;
     private double currentBalance;
-    //private int listOfTransactions;
+    private List<Transaction> transactionsList;
     private String accountName;
 
     public int getId() {
@@ -80,15 +82,15 @@ public class Account {
         this.accountName = accountName;
     }
 
-    
-    /*public int getListOfTransactions() {
-        return listOfTransactions;
+    public List<Transaction> getTransactionsList() {
+        return transactionsList;
     }
 
-    public void setListOfTransactions(int listOfTransactions) {
-        this.listOfTransactions = listOfTransactions;
-    }*/
-    
+    public void setTransactionsList(List<Transaction> transactionsList) {
+        this.transactionsList = transactionsList;
+    }
+
+       
     public boolean credit(double amount) {
         currentBalance = currentBalance + amount;
         return true;
@@ -106,9 +108,12 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", sortCode=" + sortCode + ", accountNumber=" + accountNumber + ", currentBalance=" + currentBalance + ", accountName=" + accountName + '}';
+        return "Account{" + "id=" + id + ", sortCode=" + sortCode + ", accountNumber=" 
+                + accountNumber + ", currentBalance=" + currentBalance + ", transactionsList=" 
+                + transactionsList + ", accountName=" + accountName + '}';
     }
-    
+
+   
     
 
 }

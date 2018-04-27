@@ -6,6 +6,7 @@
 package com.mycompany.customer.service;
 
 import com.mycompany.customer.model.Account;
+import com.mycompany.customer.model.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.WebApplicationException;
@@ -60,7 +61,7 @@ public class AccountService {
     }
 
     public List<Account> getACustAccounts() {
-       
+
         if (csAList.size() >= customerId) {
 
             List<Account> cal = csAList.get(customerId - 1);
@@ -96,6 +97,8 @@ public class AccountService {
     public Account addAccount(Account acc) {
         List<Account> cal = csAList.get(customerId - 1);
         acc.setId(cal.size() + 1);
+        acc.setCurrentBalance(0.0);
+        acc.setTransactionsList(new ArrayList<Transaction>());
         cal.add(acc);
         System.out.println("201 -  address create with id:" + String.valueOf(acc.getId()));
         return acc;
@@ -105,18 +108,17 @@ public class AccountService {
         if ((csAList.size() >= customerId) && customerId > 0 && accId > 0) {
             // get list of accounts for customer ID
             List<Account> cal = csAList.get(customerId - 1);
-            
+
             //  check that URI accID is for valid account in list of accounts
             if (cal.size() >= accId) {
 
                 Account acc = cal.get(accId - 1);
                 // check balance is 0 before deleting account
                 if (acc.getCurrentBalance() == 0.0) {
-                    cal.remove(accId-1);
+                    cal.remove(accId - 1);
                     System.out.println("204 -  account id:" + String.valueOf(accId) + " deleted");
                     return acc;
-                }
-                else {
+                } else {
                     throw new WebApplicationException(Response.Status.NOT_MODIFIED);
                 }
             } else {
@@ -146,7 +148,6 @@ public class AccountService {
                         result = acc.debit(amount);
                     } else {
                         throw new WebApplicationException(Response.Status.NOT_MODIFIED);
-
                     }
                 }
                 if (result == false) {
@@ -163,31 +164,69 @@ public class AccountService {
         }
     }
 
-    /*
-     *   Method to retreieve balance of a particular account given by account for
-     *   a particular customer given by customerID.
-     */
+//    /*
+//     *   Method to retreieve balance of a particular account given by account for
+//     *   a particular customer given by customerID.
+//     */
+//    public Account processAccTrans(int accId, int trx) {
+//        if (csAList.size() >= customerId) {
+//
+//            // find the required arraylist for the customerID:
+//            List<Account> cal = csAList.get(customerId - 1);
+//            if (cal.size() >= accId) {
+//                // retrieve account from arraylist for account id accId
+//                Account acc = cal.get(accId - 1);
+//                // transaction id for balance
+//                if (trx == 4) {
+//                    return acc;
+//                } //                    String balance = acc.getCurrentBalance() + "";
+//                else {
+//                    return null;
+//                }
+//            } else {
+//                return null;
+//            }
+//        } else {
+//            return null;
+//        }
+//    }
 
-    public Account processAccTrans(int accId, int trx) {
-        if (csAList.size() >= customerId) {
+//    public Account processAccTrans(int accId, int trx, double amount) {
+//        boolean result = false;
+//        if (csAList.size() >= customerId) {
+//            // get list of accounts for customer ID
+//            List<Account> cal = csAList.get(customerId - 1);
+//            //  check that URI accID is for valid account in list of accounts
+//            if (cal.size() >= accId) {
+//                Account acc = cal.get(accId - 1);
+//                // if transaction is a lodgement or a transferal
+//                if ((trx == 1 || trx == 2)) {
+//
+//                    result = acc.credit(amount);
+//                    // if transaction is a lodgement or a withdrawal
+//                } else if (trx == 3) {
+//                    // check balance meets withdrawal request
+//                    if (acc.getCurrentBalance() >= amount) {
+//                        result = acc.debit(amount);
+//                    } else {
+//                        throw new WebApplicationException(Response.Status.NOT_MODIFIED);
+//
+//                    }
+//                }
+//                if (result == false) {
+//                    return null;
+//                } else {
+//                    return acc;
+//                }
+//
+//            } else {
+//                return null;
+//            }
+//        } else {
+//            return null;
+//        }
+//}
 
-            // find the required arraylist for the customerID:
-            List<Account> cal = csAList.get(customerId - 1);
-            if (cal.size() >= accId) {
-                // retrieve account from arraylist for account id accId
-                Account acc = cal.get(accId - 1);
-                // transaction id for balance
-                if (trx == 4) {
-                    return acc;
-                } //                    String balance = acc.getCurrentBalance() + "";
-                else {
-                    return null;
-                }
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
+    
+
 }

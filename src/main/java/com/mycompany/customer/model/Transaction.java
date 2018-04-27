@@ -5,6 +5,8 @@
  */
 package com.mycompany.customer.model;
 
+import java.util.Date;
+
 /**
  * Java class that represents Transaction data
  *
@@ -13,12 +15,23 @@ package com.mycompany.customer.model;
  * @date 18th April 18
  */
 public class Transaction {
+    
+    private int id;
+    private int transactionCode;
+    private String transactionType;
+    private Date date;
+    private double postTransactionBalance;
+    private String description;
+    private double amount;
 
     // Overloaded Constructor
-    public Transaction(int debit, String date, int postTransactionBalance, String description) {
-        this.debit = debit;
+    public Transaction(int id, int transactionCode, String transactionType, Date date, double amount, double postTransactionBalance, String description) {    
+        this.id = id;
+        this.transactionCode = transactionCode;
+        this.transactionType = transactionType;
         this.date = date;
         this.postTransactionBalance = postTransactionBalance;
+        this.amount = amount;
         this.description = description;
     }
 
@@ -26,41 +39,44 @@ public class Transaction {
     public Transaction() {
     }
 
-    private int credit;
-    private int debit;
-    private String date;
-    private int postTransactionBalance;
-    private String description;
 
-    public int getCredit() {
-        return credit;
+    public int getId() {
+        return id;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getDebit() {
-        return debit;
+    public int getTransactionCode() {
+        return transactionCode;
     }
 
-    public void setDebit(int debit) {
-        this.debit = debit;
+    public void setTransactionCode(int transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
-    public String getDate() {
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public int getPostTransactionBalance() {
+    public double getPostTransactionBalance() {
         return postTransactionBalance;
     }
 
-    public void setPostTransactionBalance(int postTransactionBalance) {
+    public void setPostTransactionBalance(double postTransactionBalance) {
         this.postTransactionBalance = postTransactionBalance;
     }
 
@@ -71,5 +87,22 @@ public class Transaction {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" + "id=" + id + ", transactionCode=" + transactionCode + ", transactionType=" 
+                + transactionType + ", date=" + date + ", postTransactionBalance=" + postTransactionBalance 
+                + ", description=" + description + ", amount=" + amount + '}';
+    }
+    
+    
 
 }
